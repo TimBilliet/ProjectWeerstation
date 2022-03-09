@@ -1,6 +1,5 @@
 package presentatie;
 
-import org.w3c.dom.ls.LSOutput;
 
 /**
  * ProjectWeerstation : Demo
@@ -9,5 +8,8 @@ import org.w3c.dom.ls.LSOutput;
  * @version 9/03/2022
  */
 public class Demo {
+    public static void main(String[] args) {
+        System.out.println("test");
+    }
 
 }
