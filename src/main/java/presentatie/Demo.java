@@ -14,7 +14,7 @@ import java.util.Scanner;
 public class Demo {
     public static void main(String[] args) {
         String invoer;
-        String maand;
+        String maand = "";
         int jaar;
         int dag;
         int temperatuur;
@@ -25,7 +25,7 @@ public class Demo {
         do {
             Scanner scan = new Scanner(System.in);
             System.out.println("Welkom, wat wil je doen?");
-            System.out.println("\t [D]: Toevoegen van de meetwaarde");
+            System.out.println("\t [D]: Toevoegen van meetwaarden voor een nieuwe dag");
             System.out.println("\t [A]: Afprinten van de metingen");
             System.out.println("\t [R]: Weerrapport genereren");
             System.out.println("\t [S]: Stoppen");
@@ -33,16 +33,16 @@ public class Demo {
             if(!invoer.equals("D") && !invoer.equals("A") && !invoer.equals("R") && !invoer.equals("S")) {
                 System.out.println("Ongeldige invoer");
             }
-            if(!invoer.equals("S") && invoer.equals("D") || invoer.equals("A") || invoer.equals("R")) {
-                System.out.println("Voer een maand in");
-                maand = scan.next();
-                System.out.println("Voer een jaar in");
-                jaar = scan.nextInt();
-                weerstation = new Weerstation(maand, jaar);
-            }
 
             switch(invoer) {
                 case "D":
+                    if(maand.equals("")) {
+                        System.out.println("Voer een maand in");
+                        maand = scan.next();
+                        System.out.println("Voer een jaar in");
+                        jaar = scan.nextInt();
+                        weerstation = new Weerstation(maand, jaar);
+                    }
                     do {
                         System.out.println("Welke dag wil je selecteren (1-31)");
                         dag = scan.nextInt();
@@ -62,13 +62,16 @@ public class Demo {
                     weerstation.voegDagToe(dag, new int[]{temperatuur,luchtvochtigheid,neerslagkans,windsterkte} );
                     break;
                 case "A":
+                    try {
+                        System.out.println(weerstation.geefOverzichtMeetWaarden());
+                    } catch (NullPointerException e){
+                        System.out.println("Er zijn nog geen meetwaarden");
+                    }
                     break;
                 case "R":
                     break;
             }
-
         }while (!invoer.equals("S"));
         System.out.println("Programma gestopt");
-
     }
 }
