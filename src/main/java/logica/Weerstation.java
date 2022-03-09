@@ -1,6 +1,8 @@
 package logica;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
 
 /**
  * Weerstation : Weerstation
@@ -9,12 +11,22 @@ import java.util.ArrayList;
  * @version 9/03/2022
  */
 public class Weerstation {
-    int dag = 0;
-    //private ArrayList<ArrayList<Integer>>;
-    public Weerstation(){
-        dag++;
+    private ArrayList<int[]> meetwaarden;
+    private final String naam;
+    private final int jaar;
+
+    public Weerstation(String naam, int jaar){
+        this.meetwaarden = new ArrayList<>();
+        this.naam = naam;
+        this.jaar = jaar;
+
     }
-    public Weerstation(int dag, int temp){
-        this.dag = dag;
+
+    public void voegDagToe(int dag, int[] waarden) {
+        meetwaarden.add(dag - 1, waarden);
+    }
+
+    public ArrayList<int[]> getMeetwaarden() {
+        return meetwaarden;
     }
 }
