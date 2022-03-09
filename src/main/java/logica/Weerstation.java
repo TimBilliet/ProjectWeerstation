@@ -2,7 +2,6 @@ package logica;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
 
 /**
  * Weerstation : Weerstation
@@ -11,7 +10,7 @@ import java.util.Collections;
  * @version 9/03/2022
  */
 public class Weerstation {
-    private ArrayList<int[]> meetwaarden;
+    private ArrayList<ArrayList<Integer>> meetwaarden;
     private final String naam;
     private final int jaar;
 
@@ -19,14 +18,14 @@ public class Weerstation {
         this.meetwaarden = new ArrayList<>();
         this.naam = naam;
         this.jaar = jaar;
-
+        for(int i = 0; i < 31; i ++) {
+            meetwaarden.add(new ArrayList<>(Arrays.asList(0,0,0,0)));
+        }
     }
 
     public void voegDagToe(int dag, int[] waarden) {
-        meetwaarden.add(dag - 1, waarden);
+        meetwaarden.set(dag - 1, new ArrayList<>(Arrays.asList(waarden[0], waarden[1], waarden[2], waarden[3])));
     }
 
-    public ArrayList<int[]> getMeetwaarden() {
-        return meetwaarden;
-    }
+
 }
