@@ -1,6 +1,8 @@
 package presentatie;
 
 
+import java.util.Scanner;
+
 /**
  * ProjectWeerstation : Demo
  *
@@ -20,5 +22,4 @@ public class Demo {
             invoer = scan.next();
         }while (!invoer.equals("S"));
     }
-
 }
