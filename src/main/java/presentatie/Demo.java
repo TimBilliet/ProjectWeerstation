@@ -9,7 +9,16 @@ package presentatie;
  */
 public class Demo {
     public static void main(String[] args) {
-        System.out.println("testurmom");
+        String invoer = "";
+        do {
+            System.out.println("Welkom, wat wil je doen?");
+            System.out.println("\t [D]: Toevoegen van de meetwaarde");
+            System.out.println("\t [A]: Afprinten van de meningen");
+            System.out.println("\t [R]: Weerrapport genereren");
+            System.out.println("\t [S]: Stoppen");
+            Scanner scan = new Scanner(System.in);
+            invoer = scan.next();
+        }while (!invoer.equals("S"));
     }
 
 }
