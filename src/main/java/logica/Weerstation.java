@@ -54,4 +54,27 @@ public class Weerstation {
         }
         return waarden;
     }
+
+    public double[] berekenGemiddelden() {
+
+        for(int i = 0; i < meetwaarden.size(); i++) {
+
+        }
+
+        return new double[0];
+    }
+
+    public double berekenGemiddeldeRij(int[] rij) {
+        int totaal = 0;
+        for (int element:rij) {
+            totaal += element;
+        }
+        return Math.round((totaal / (double)rij.length) * 100) / 100.0;
+    }
+
+    public boolean bevatKoudeGolf() {
+
+        return false;
+    }
+
 }

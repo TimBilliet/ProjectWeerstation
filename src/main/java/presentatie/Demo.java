@@ -69,6 +69,13 @@ public class Demo {
                     }
                     break;
                 case "R":
+                    try {
+                        System.out.println(weerstation.berekenGemiddeldeRij(new int[]{5,3,7,8,9,2}));
+                    } catch (NullPointerException e){
+                        System.out.println("Er zijn nog geen meetwaarden");
+                    }
+
+
                     break;
             }
         }while (!invoer.equals("S"));
