@@ -33,7 +33,7 @@ public class Demo {
             if(!invoer.equals("D") && !invoer.equals("A") && !invoer.equals("R") && !invoer.equals("S")) {
                 System.out.println("Ongeldige invoer");
             }
-
+//test
             switch(invoer) {
                 case "D":
                     if(maand.equals("")) {

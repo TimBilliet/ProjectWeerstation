@@ -9,6 +9,7 @@ import java.util.Arrays;
  * @author Tim Billiet
  * @version 9/03/2022
  */
+//test
 public class Weerstation {
     private final ArrayList<ArrayList<Integer>> meetwaarden;
     private final String maand;
