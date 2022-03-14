@@ -9,6 +9,7 @@ import java.util.Arrays;
  * @author Tim Billiet
  * @version 9/03/2022
  */
+
 //test
 public class Weerstation {
     private final ArrayList<ArrayList<Integer>> meetwaarden;
@@ -19,8 +20,31 @@ public class Weerstation {
         this.meetwaarden = new ArrayList<>();
         this.maand = maand;
         this.jaar = jaar;
-        for (int i = 0; i < 31; i++) {
-            meetwaarden.add(new ArrayList<>(Arrays.asList(null, null, null, null)));
+        switch (maand) {
+            case "januari":
+            case "maart":
+            case "mei":
+            case "juli":
+            case "augustus":
+            case "oktober":
+            case "december":
+                for (int i = 0; i < 31; i++) {
+                    meetwaarden.add(new ArrayList<>(Arrays.asList(null, null, null, null)));
+                }
+                break;
+            case "april":
+            case "juni":
+            case "september":
+            case "november":
+                for (int i = 0; i < 30; i++) {
+                    meetwaarden.add(new ArrayList<>(Arrays.asList(null, null, null, null)));
+                }
+                break;
+            case "februari":
+                for (int i = 0; i < 28; i++) {
+                    meetwaarden.add(new ArrayList<>(Arrays.asList(null, null, null, null)));
+                }
+                break;
         }
     }
 
@@ -56,25 +80,49 @@ public class Weerstation {
     }
 
     public double[] berekenGemiddelden() {
-
-        for(int i = 0; i < meetwaarden.size(); i++) {
-
+        int [] waarde = new int[meetwaarden.size()];
+        double [] uitvoer = new double[4];
+        if(meetwaarden.size() > 0) {
+            for (int j = 0; j < 4; j++) {
+                for (int i = 0; i < meetwaarden.size(); i++) {
+                    if (!meetwaarden.get(i).equals(new ArrayList<>(Arrays.asList(null, null, null, null)))) {
+                        waarde[i] = meetwaarden.get(i).get(j);
+                    }
+                }
+                uitvoer[j] = berekenGemiddeldeRij(waarde);
+            }
         }
-
-        return new double[0];
+        return uitvoer;
     }
 
     public double berekenGemiddeldeRij(int[] rij) {
         int totaal = 0;
+        int lengte = 0;
         for (int element:rij) {
-            totaal += element;
+            if (element != 0){
+                totaal += element;
+                lengte++;
+            }
         }
-        return Math.round((totaal / (double)rij.length) * 100) / 100.0;
+        return Math.round((totaal / (double)lengte) * 100) / 100.0;
     }
 
     public boolean bevatKoudeGolf() {
-
-        return false;
+        int vriesdagen = 0;
+        int diepe_vriesdagen = 0;
+        if(meetwaarden.size() > 0) {
+            for (int i = 0; i < meetwaarden.size(); i++) {
+                if (!meetwaarden.get(i).equals(new ArrayList<>(Arrays.asList(null, null, null, null)))) {
+                    if (meetwaarden.get(i).get(0) < 0) {
+                        vriesdagen++;
+                        if (meetwaarden.get(i).get(0) <= -10) {
+                            diepe_vriesdagen++;
+                        }
+                    }
+                }
+            }
+        }
+        return vriesdagen >= 5 && diepe_vriesdagen >= 3;
     }
 
 }
