@@ -95,6 +95,12 @@ public class Weerstation {
         return uitvoer;
     }
 
+    /**
+     * telt alle waarden op en geeft het gemiddelde ervan terug
+     *
+     * @param rij De rij met waarden, waarvan het gemiddelde moet berekend worden
+     * @return Het gemiddelde wordt terug gegeven
+     */
     public double berekenGemiddeldeRij(int[] rij) {
         int totaal = 0;
         int lengte = 0;
